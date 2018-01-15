@@ -17,21 +17,20 @@ public class WordCheckerReadable {
 	 */
 	public static void main(String[] args) throws URISyntaxException {
 
+		long startTime = System.nanoTime();
 		readFromFile();
 		findSixLetterWordsComposedOfOtherTwoWords();
 		printWords();
+		System.out.println("selectedWords size: " + selectedWords.size());
+		System.out.println(System.nanoTime() - startTime);
 	}
 
 	private static void printWords() {
-		System.out.println("selectedWords size: " + selectedWords.size());
 		selectedWords.stream().forEach(System.out::println);
 	}
 
 	private static void findSixLetterWordsComposedOfOtherTwoWords() {
-		long startTime = System.nanoTime();
-		System.out.println("findSixLetterWordsComposedOfOtherTwoWords started: ");
 		selectedWords = new ArrayList<>();
-		int cnt = 0;
 		for (String string1 : allWords) {
 			for (String string2 : allWords) {
 				String newWord = string1 + string2;
@@ -39,16 +38,12 @@ public class WordCheckerReadable {
 					selectedWords.add(newWord);
 				}
 			}
-			System.out.println("cnt : " + cnt);
-			cnt++;
 		}
-		System.out.println(System.nanoTime() - startTime);
 
 	}
 
 	private static void readFromFile() throws URISyntaxException {
 		allWords = FileReaderReadable.readFromFile();
-		System.out.println("allWords.size: " + allWords.size());
 
 	}
 }
