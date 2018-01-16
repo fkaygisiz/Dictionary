@@ -41,27 +41,27 @@ public class WordCheckerPerformance {
 	}
 
 	private static void checkIfSmallWordsConstructBigWord(Entry<Character, List<String>> bigStringEntry,
-			Map<Character, List<String>> fiveOrLessLetterWords2, Set<String> selectedWords2) {
+			Map<Character, List<String>> fiveOrLessLetterWords, Set<String> selectedWords) {
 		Character key = bigStringEntry.getKey();
 		List<String> bigStrings = bigStringEntry.getValue();
-		List<String> smallBegingKeys = fiveOrLessLetterWords2.get(key);
+		List<String> smallBegingKeys = fiveOrLessLetterWords.get(key);
 		for (String bigString : bigStrings) {
 			for (String smallStringStart : smallBegingKeys) {
 				if (bigString.indexOf(smallStringStart) == 0) {
-					findComplementaryWord(fiveOrLessLetterWords2, selectedWords2, bigString, smallStringStart);
+					findComplementaryWord(fiveOrLessLetterWords, selectedWords, bigString, smallStringStart);
 				}
 			}
 		}
 
 	}
 
-	private static void findComplementaryWord(Map<Character, List<String>> fiveOrLessLetterWords2,
-			Set<String> selectedWords2, String bigString, String smallStringStart) {
-		List<String> complementaryList = fiveOrLessLetterWords2.get(bigString.charAt(smallStringStart.length()));
+	private static void findComplementaryWord(Map<Character, List<String>> fiveOrLessLetterWords,
+			Set<String> selectedWords, String bigString, String smallStringStart) {
+		List<String> complementaryList = fiveOrLessLetterWords.get(bigString.charAt(smallStringStart.length()));
 		if (complementaryList != null) {
 			for (String complementaryString : complementaryList) {
 				if (bigString.equals(smallStringStart + complementaryString)) {
-					selectedWords2.add(bigString);
+					selectedWords.add(bigString);
 				}
 			}
 		}
