@@ -6,35 +6,26 @@ import java.util.List;
 
 public class WordCheckerReadable {
 
-	static List<String> allWords;
-	static List<String> selectedWords;
+	private List<String> sixOrLessLetterWords;
+	private List<String> selectedWords;
 
-	/**
-	 * Needs approximately 117000 seconds to complete
-	 * 
-	 * @param args
-	 * @throws URISyntaxException
-	 */
-	public static void main(String[] args) throws URISyntaxException {
-
-		long startTime = System.nanoTime();
-		readFromFile();
-		findSixLetterWordsComposedOfOtherTwoWords();
-		printWords();
+	public void readFromFileFindWordsAndPrint() {
+		this.readFromFile();
+		this.findSixLetterWordsComposedOfOtherTwoWords();
+		this.printWords();
 		System.out.println("selectedWords size: " + selectedWords.size());
-		System.out.println(System.nanoTime() - startTime);
 	}
 
-	private static void printWords() {
+	private void printWords() {
 		selectedWords.stream().forEach(System.out::println);
 	}
 
-	private static void findSixLetterWordsComposedOfOtherTwoWords() {
+	private void findSixLetterWordsComposedOfOtherTwoWords() {
 		selectedWords = new ArrayList<>();
-		for (String string1 : allWords) {
-			for (String string2 : allWords) {
-				String newWord = string1 + string2;
-				if (newWord.length() == 6 && allWords.contains(newWord)) {
+		for (String firstSmallLetter : sixOrLessLetterWords) {
+			for (String secondSmallLetter : sixOrLessLetterWords) {
+				String newWord = firstSmallLetter + secondSmallLetter;
+				if (newWord.length() == 6 && sixOrLessLetterWords.contains(newWord)) {
 					selectedWords.add(newWord);
 				}
 			}
@@ -42,8 +33,12 @@ public class WordCheckerReadable {
 
 	}
 
-	private static void readFromFile() throws URISyntaxException {
-		allWords = FileReaderReadable.readFromFile();
+	private void readFromFile() {
+		try {
+			sixOrLessLetterWords = FileReaderReadable.readFromFile();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 
 	}
 }

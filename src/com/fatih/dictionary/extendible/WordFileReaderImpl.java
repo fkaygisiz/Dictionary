@@ -23,7 +23,6 @@ public class WordFileReaderImpl implements WordFileReader {
 	}
 
 	public WordMapHolder readFromFile(int wordLetterCount) {
-		System.out.println("Read is started");
 		Map<Character, List<String>> sixLetterWords = new HashMap<>();
 		Map<Character, List<String>> fiveOrLessLetterWords = new HashMap<>();
 		try (Stream<String> stream = Files.lines(Paths.get(ClassLoader.getSystemResource(fileName).toURI()),

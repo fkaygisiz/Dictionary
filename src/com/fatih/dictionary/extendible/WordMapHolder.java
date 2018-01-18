@@ -21,6 +21,5 @@ public class WordMapHolder {
 	public Map<Character, List<String>> getSmallWordsMap() {
 		return smallWordsMap;
 	}
-	
-	
+
 }

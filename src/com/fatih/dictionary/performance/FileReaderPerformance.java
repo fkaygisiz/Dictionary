@@ -16,7 +16,6 @@ public class FileReaderPerformance {
 	public static final String FIVE_OR_LESS_LETTER_WORDS = "fiveOrLessLetterWords";
 
 	public static Map<String, Map<Character, List<String>>> readFromFile() throws URISyntaxException {
-		System.out.println("Read is started");
 		Map<Character, List<String>> sixLetterWords = new HashMap<>();
 		Map<Character, List<String>> fiveOrLessLetterWords = new HashMap<>();
 		try (Stream<String> stream = Files.lines(Paths.get(ClassLoader.getSystemResource("wordlist.txt").toURI()),

@@ -13,14 +13,12 @@ import java.util.stream.Stream;
 public class FileReaderReadable {
 
 	public static List<String> readFromFile() throws URISyntaxException {
-		// read file into stream, try-with-resources
-		System.out.println("Read is started");
 		try (Stream<String> stream = Files.lines(Paths.get(ClassLoader.getSystemResource("wordlist.txt").toURI()),
 				Charset.forName("Cp1254"))) {
-			return stream.filter(e -> e.length() <= 6 ).collect(Collectors.toList());
+			return stream.filter(e -> e.length() <= 6).collect(Collectors.toList());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
 }
